@@ -1,9 +1,10 @@
-const { Client, GatewayIntentBits, Message } = require('discord.js');
+const { Client, GatewayIntentBits } = require('discord.js');
 const Discord = require('discord.js');
 const client = new Discord.Client({ intents: [
 	GatewayIntentBits.Guilds,
 	GatewayIntentBits.GuildMessages,
 	GatewayIntentBits.MessageContent,
+	GatewayIntentBits.GuildMessageTyping
 	]
 })
 const fs = require('fs');
@@ -23,9 +24,9 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 
-const prefix = '!';
+const prefix = 'js!';
 
-client.on('message', message => {
+client.on('messageCreate', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
@@ -43,10 +44,8 @@ client.on('message', message => {
 	}
 });
 
-client.on('message', message => {
-	if (message.content === 'Hi') {
-		message.channel.send('Hi!');
-	}
-});
+
+
+
 
 client.login(process.env.TOKEN)

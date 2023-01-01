@@ -27,7 +27,7 @@ module.exports = {
 					Experience: ${experience}
 					Joined: ${joined}
 				`);
-                console.log(res)
+                
 			})
 			.catch(error => {
 				console.error(error);
